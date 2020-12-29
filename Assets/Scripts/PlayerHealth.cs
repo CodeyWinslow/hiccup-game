@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    [SerializeField]
+    float initialHealth;
 
-    public float initialHealth;
     CharCombat combat;
 
+    //Monobehavior Lifecycle
     private void Awake()
     {
         combat = GetComponent<CharCombat>();
@@ -18,6 +20,7 @@ public class PlayerHealth : Health
         health = initialHealth;
     }
 
+    //State Logic
     public override void Damage(float amount)
     {
         if (!combat.TakingDamage)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBehavior : MonoBehaviour
+public class AttackBox : MonoBehaviour
 {
     protected HashSet<GameObject> inRange = new HashSet<GameObject>();
     public virtual void Attack(float damage)
@@ -10,7 +10,8 @@ public class AttackBehavior : MonoBehaviour
         Health health;
         foreach (GameObject o in inRange)
         {
-            if ((health = o.GetComponent<Health>()))
+            if (o != null &&
+                (health = o.GetComponent<Health>()))
             {
                 health.Damage(damage);
             }

@@ -5,10 +5,13 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    //State Vars
+    protected float health;
+
+    //Events
     public UnityAction OnDeath;
 
-    protected float health;
-    // Start is called before the first frame update
+    //State Logic
     public virtual void Damage(float damage)
     {
         health -= damage;

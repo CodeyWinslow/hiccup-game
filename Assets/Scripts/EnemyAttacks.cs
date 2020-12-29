@@ -6,11 +6,15 @@ using UnityEngine.Events;
 
 public class EnemyAttacks : MonoBehaviour
 {
-    public float attackDamage;
-    public float attackDelay;
-    public float timeToDestroyAfterDeath;
+    //State vars
+    [SerializeField]
+    private float attackDamage;
+    [SerializeField]
+    private float attackDelay;
+    [SerializeField]
+    private float timeToDestroyAfterDeath;
 
-    EnemyAttackBehavior attacking;
+    EnemyAttackBox attacking;
     EnemyHealth health;
     NavMeshAgent agent;
     Animator anim;
@@ -18,14 +22,16 @@ public class EnemyAttacks : MonoBehaviour
     bool takingDamage = false;
     float nextAttackTime;
 
+    //Attributes
     public bool TakingDamage
     {
         get { return takingDamage; }
     }
 
+    //Monobehavior Lifecycle
     private void Awake()
     {
-        attacking = GetComponentInChildren<EnemyAttackBehavior>();
+        attacking = GetComponentInChildren<EnemyAttackBox>();
         Asserts.AssertNotNull(attacking, "Enemy must have EnemyAttackBehavior component");
         anim = GetComponentInChildren<Animator>();
         Asserts.AssertNotNull(anim, "Must have an Animator component on Enemy mesh");
@@ -44,7 +50,13 @@ public class EnemyAttacks : MonoBehaviour
         health.OnDeath -= OnDeath;
     }
 
-    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        if (!canAttack && Time.time >= nextAttackTime)
+            canAttack = true;
+    }
+
+    //State Logic
     void WhenInRange()
     {
         if (canAttack && !takingDamage)
@@ -58,9 +70,13 @@ public class EnemyAttacks : MonoBehaviour
 
     public void StartTakingDamage()
     {
-        takingDamage = true;
-        canAttack = true;
-        anim.SetTrigger("Hit");
+        if (!takingDamage)
+        {
+            takingDamage = true;
+            canAttack = true;
+            anim.SetTrigger("Hit");
+            agent.enabled = false;
+        }
     }
 
     public void OnDeath()
@@ -73,6 +89,7 @@ public class EnemyAttacks : MonoBehaviour
         GameObject.Destroy(gameObject, timeToDestroyAfterDeath);
     }
 
+    //Animation Events
     public void PunchHit()
     {
         attacking.Attack(attackDamage);
@@ -85,9 +102,4 @@ public class EnemyAttacks : MonoBehaviour
         agent.enabled = true;
     }
 
-    private void FixedUpdate()
-    {
-        if (!canAttack && Time.time >= nextAttackTime)
-            canAttack = true;
-    }
 }

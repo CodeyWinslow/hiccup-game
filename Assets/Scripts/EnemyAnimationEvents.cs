@@ -7,7 +7,7 @@ public class EnemyAnimationEvents : MonoBehaviour
 {
     public UnityEvent OnEnemyPunchHit;
     public UnityEvent OnEnemyHitEnd;
-    // Start is called before the first frame update
+
     public void MalePunchHit()
     {
         OnEnemyPunchHit?.Invoke();

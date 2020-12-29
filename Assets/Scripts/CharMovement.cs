@@ -5,20 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharMovement : MonoBehaviour
 {
+    //State Vars
+    [SerializeField]
     public float moveSpeed;
+    [SerializeField]
     public float gravity;
+    [SerializeField]
     public float jumpSpeed;
 
-    private CharacterController cont;
-    private GroundDetection grounded;
-    private CharCombat combatBehavior;
-    private CameraFollow camFol;
-    private Vector3 move;
-    private float yspeed;
-    private bool jumping = false;
+    CharacterController cont;
+    GroundDetection grounded;
+    CharCombat combatBehavior;
+    CameraFollow camFol;
+    Vector3 move;
+    float yspeed;
+    bool jumping = false;
 
-    // Start is called before the first frame update
-
+    //Monobehavior Lifecycle
     private void Awake()
     {
         cont = GetComponent<CharacterController>();
@@ -34,7 +37,6 @@ public class CharMovement : MonoBehaviour
         yspeed = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //get raw movement input

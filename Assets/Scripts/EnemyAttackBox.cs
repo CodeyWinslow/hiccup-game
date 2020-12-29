@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyAttackBehavior : AttackBehavior
+public class EnemyAttackBox : AttackBox
 {
     public UnityAction PlayerInRange;
 

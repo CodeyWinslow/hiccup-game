@@ -7,7 +7,8 @@ public class PlayerAnimation : MonoBehaviour
     CharCombat combatBehavior;
     Animator anim;
     private Vector3 move;
-    // Start is called before the first frame update
+
+    //Monobehavior Lifecycle
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -16,7 +17,6 @@ public class PlayerAnimation : MonoBehaviour
         Asserts.AssertNotNull(combatBehavior, "Player must have CharCombat component");
     }
 
-    // Update is called once per frame
     void Update()
     {
         move.x = Input.GetAxis("Horizontal");

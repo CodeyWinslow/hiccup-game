@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //State Vars
+    [SerializeField]
     public float minMoveSpeed = 5f;
+    [SerializeField]
     public float maxMoveSpeed = 5f;
+
     NavMeshAgent agent;
     Animator anim;
     Transform playerPosition;
 
-    // Start is called before the first frame update
+    //Monobehavior Lifecycle
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,7 +31,6 @@ public class EnemyMovement : MonoBehaviour
         playerPosition = Player.GetPlayer().gameObject.transform;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (playerPosition != null && agent.enabled)
