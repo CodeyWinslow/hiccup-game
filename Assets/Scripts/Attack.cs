@@ -8,6 +8,8 @@ public abstract class Attack : MonoBehaviour, IAttack
     [SerializeField]
     string inputButton;
 
+    protected CharCombat combat;
+
     public event EventHandler AttackPressed;
     public event EventHandler AttackReleased;
 

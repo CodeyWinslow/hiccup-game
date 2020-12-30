@@ -19,7 +19,8 @@ public class EnemyAttackBox : AttackBox
         PlayerHealth health;
         foreach (GameObject o in inRange)
         {
-            if ((health = o.GetComponent<PlayerHealth>()))
+            if (o != null
+                && (health = o.GetComponent<PlayerHealth>()))
             {
                 health.Damage(damage);
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharMovement : MonoBehaviour
+public class CharMovement : Movement
 {
     //State Vars
     [SerializeField]
@@ -103,5 +103,10 @@ public class CharMovement : MonoBehaviour
 
         //move
         cont.Move(move * Time.deltaTime);
+    }
+
+    public override void ChangeSpeed(float speed)
+    {
+        moveSpeed = speed;
     }
 }

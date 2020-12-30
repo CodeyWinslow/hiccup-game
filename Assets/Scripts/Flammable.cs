@@ -9,6 +9,7 @@ public class Flammable : MonoBehaviour
     float timeToExtinguish;
 
     Health health;
+    bool canBurn;
     float damageToTake;
     bool ablaze = false;
 
@@ -23,7 +24,14 @@ public class Flammable : MonoBehaviour
     //Monobehavior Lifecycle
     private void Awake()
     {
+        canBurn = true;
         health = GetComponent<Health>();
+        health.OnDeath += OnDeath;
+    }
+
+    private void OnDestroy()
+    {
+        health.OnDeath -= OnDeath;
     }
 
     private void FixedUpdate()
@@ -44,15 +52,18 @@ public class Flammable : MonoBehaviour
     //State Logic
     public void Ignite(float damagePerSec)
     {
-        damageToTake = Mathf.Max(damagePerSec, damageToTake);
-        extinguishTime = Time.time + timeToExtinguish;
-        health.Damage(damageToTake);
-        if (!ablaze)
-            damageTime = Time.time + 1; //take damage every second
+        if (canBurn)
+        {
+            damageToTake = Mathf.Max(damagePerSec, damageToTake);
+            extinguishTime = Time.time + timeToExtinguish;
+            health.Damage(damageToTake);
+            if (!ablaze)
+                damageTime = Time.time + 1; //take damage every second
 
-        ablaze = true;
+            ablaze = true;
 
-        OnIgnite?.Invoke();
+            OnIgnite?.Invoke();
+        }
     }
 
     void Extinguish()
@@ -69,5 +80,11 @@ public class Flammable : MonoBehaviour
         damageTime = Time.time + 1;
 
         OnDoDamage?.Invoke();
+    }
+
+    void OnDeath()
+    {
+        canBurn = false;
+        Extinguish();
     }
 }

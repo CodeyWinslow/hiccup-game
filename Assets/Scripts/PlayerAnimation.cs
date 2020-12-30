@@ -21,8 +21,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         move.x = Input.GetAxis("Horizontal");
         move.z = Input.GetAxis("Vertical");
-        anim.SetFloat("RunSpeed", (move.magnitude < 1 ? move.magnitude : 1));
-        if (Input.GetButtonDown("Fire1") && combatBehavior.CanAttack)
-            anim.SetTrigger("AttackPunch");
+        if (!combatBehavior.CanMove)
+            anim.SetFloat("RunSpeed", 0);
+        else
+            anim.SetFloat("RunSpeed", (move.magnitude < 1 ? move.magnitude : 1));
     }
 }

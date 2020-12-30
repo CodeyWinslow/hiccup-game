@@ -9,7 +9,6 @@ public class CombatAttackFire : Attack
     [SerializeField]
     float fireDamagePerSecond;
 
-    CharCombat combat;
     FireAttackBox fire;
 
     //Monobehavior Lifecycle

@@ -10,7 +10,6 @@ public class CombatAttackPunch : Attack
     [SerializeField]
     float punchDamage;
 
-    CharCombat combat;
     Animator anim;
     AttackBox att;
 
