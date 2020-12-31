@@ -8,7 +8,12 @@ public class CombatAttackFoam : Attack
 {
     [SerializeField]
     float timeToSpawnFoam;
+    [SerializeField]
+    float foamCost;
+    [SerializeField]
+    float maxFoamPoints;
 
+    FloatMeter foamMeter;
     FoamSpawn spawn;
     FoamEffect effect;
     bool foaming;
@@ -18,6 +23,11 @@ public class CombatAttackFoam : Attack
     {
         foaming = false;
 
+        foamMeter = new FloatMeter();
+        foamMeter.ClampZero = true;
+        foamMeter.MaxValue = maxFoamPoints;
+        foamMeter.Value = 0;
+
         combat = GetComponent<CharCombat>();
         spawn = GetComponentInChildren<FoamSpawn>();
         Asserts.AssertNotNull(spawn, "Player must have FoamSpawn component");
@@ -26,12 +36,14 @@ public class CombatAttackFoam : Attack
 
         AttackPressed += OnAttack;
         AttackReleased += OnRelease;
+        foamMeter.OnValueZero += OnMeterZero;
     }
 
     private void OnDestroy()
     {
         AttackPressed -= OnAttack;
         AttackReleased -= OnRelease;
+        foamMeter.OnValueZero -= OnMeterZero;
     }
 
     private void FixedUpdate()
@@ -40,6 +52,7 @@ public class CombatAttackFoam : Attack
         {
             SpawnFoam();
             nextSpawnTime = Time.time + timeToSpawnFoam;
+            foamMeter.Value -= foamCost;
         }
     }
 
@@ -50,7 +63,7 @@ public class CombatAttackFoam : Attack
 
     public override void OnAttack()
     {
-        if (combat.CanAttack)
+        if (combat.CanAttack && foamMeter.Value >= foamCost)
         {
             combat.CurrentAttack = this;
             combat.CanAttack = false;
@@ -59,6 +72,15 @@ public class CombatAttackFoam : Attack
             nextSpawnTime = Time.time + timeToSpawnFoam;
             effect.StartEffect();
         }
+    }
+
+    public bool AddFoamPoints(float points)
+    {
+        if (foamMeter.Value == foamMeter.MaxValue)
+            return false;
+
+        foamMeter.Value += points;
+        return true;
     }
 
     void OnRelease()
@@ -71,5 +93,21 @@ public class CombatAttackFoam : Attack
             foaming = false;
             effect.StopEffect();
         }
+    }
+
+    void OnMeterZero(object sender, EventArgs e)
+    {
+        OnRelease();
+    }
+
+    public void BindValueChanged(EventHandler<float> handler)
+    {
+        foamMeter.OnValueChanged += handler;
+        handler(this, foamMeter.Value);
+    }
+
+    public void UnbindValueChanged(EventHandler<float> handler)
+    {
+        foamMeter.OnValueChanged -= handler;
     }
 }

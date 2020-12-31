@@ -4959,6 +4959,7 @@ GameObject:
   - component: {fileID: 1561260047}
   - component: {fileID: 1561260048}
   - component: {fileID: 1873430344}
+  - component: {fileID: 1414585042}
   m_Layer: 9
   m_Name: PlayerFemale
   m_TagString: Player
@@ -5032,7 +5033,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2016b31eff19de418e60ad31ad09635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 100
+  health: 0
+  initialHealth: 30
+  healingCountdown: 5
+  healingHealthPerSec: 5
 --- !u!114 &1220594059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5045,8 +5049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cb58b3d8d4cc34ba96a3e4bdea9de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchDamage: 20
-  fireDamage: 10
 --- !u!114 &8320761137441828616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5099,6 +5101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputButton: Fire2
   fireDamagePerSecond: 10
+  fireCostPerSecond: 20
+  maxFirePoints: 100
 --- !u!114 &1873430344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5113,6 +5117,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputButton: Fire3
   timeToSpawnFoam: 0.5
+  foamCost: 10
+  maxFoamPoints: 100
+--- !u!114 &1414585042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583670722735740916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f5e439c42713047be097533c0cd8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowSpeed: 4
+  normalSpeed: 8
 --- !u!1 &4152648482940548531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5217,6 +5237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d4778c6c682534da896508000613ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4096
   grounded: 0
   timeToDisable: 0.5
   timeLeft: 0
@@ -10045,6 +10068,7 @@ GameObject:
   - component: {fileID: 3865247016933652082}
   - component: {fileID: 7009837200583154037}
   - component: {fileID: 5174627127124905241}
+  - component: {fileID: 1117000147}
   m_Layer: 0
   m_Name: HurtCircle
   m_TagString: Untagged
@@ -10060,7 +10084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343175110030126037}
   m_LocalRotation: {x: -0.7071064, y: -0, z: -0, w: 0.7071072}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0.096, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 583670722735740913}
@@ -10125,13 +10149,26 @@ Animation:
   m_GameObject: {fileID: 8343175110030126037}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: f6c598c39670587488beb8ced4e9973b, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: f6c598c39670587488beb8ced4e9973b, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1117000147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343175110030126037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80937cc6755fc3540884cf6f3a98a4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthToAppear: 10
 --- !u!1001 &967851519688325674
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundDetection : MonoBehaviour
 {
+    public LayerMask groundMask;
     public bool grounded = false;
 
     public float timeToDisable = 0.5f;
@@ -37,12 +38,17 @@ public class GroundDetection : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-        if (!disabled)
+        if (!disabled
+            && (groundMask & (1 << col.gameObject.layer)) != 0)
             grounded = true;
     }
 
     private void OnTriggerExit(Collider col)
     {
-        grounded = false;
+        LayerMask mask = new LayerMask();
+        mask.value = col.gameObject.layer;
+
+        if (mask.value == col.gameObject.layer)
+            grounded = false;
     }
 }

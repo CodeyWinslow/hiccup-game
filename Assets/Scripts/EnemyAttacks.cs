@@ -21,6 +21,7 @@ public class EnemyAttacks : MonoBehaviour
     bool canAttack = true;
     bool takingDamage = false;
     float nextAttackTime;
+    bool alive = true;
 
     //Attributes
     public bool TakingDamage
@@ -70,7 +71,7 @@ public class EnemyAttacks : MonoBehaviour
 
     public void StartTakingDamage()
     {
-        if (!takingDamage)
+        if (alive && !takingDamage)
         {
             takingDamage = true;
             canAttack = true;
@@ -81,25 +82,33 @@ public class EnemyAttacks : MonoBehaviour
 
     public void OnDeath()
     {
+        alive = false;
         agent.enabled = false;
         canAttack = false;
         anim.SetTrigger("Die");
         attacking.enabled = false;
         health.enabled = false;
+        GetComponent<CharacterController>().enabled = false;
         GameObject.Destroy(gameObject, timeToDestroyAfterDeath);
     }
 
     //Animation Events
     public void PunchHit()
     {
-        attacking.Attack(attackDamage);
-        agent.enabled = true;
+        if (alive)
+        {
+            attacking.Attack(attackDamage);
+            agent.enabled = true;
+        }
     }
 
     public void HitEnd()
     {
-        takingDamage = false;
-        agent.enabled = true;
+        if (alive)
+        {
+            takingDamage = false;
+            agent.enabled = true;
+        }
     }
 
 }

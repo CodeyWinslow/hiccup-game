@@ -14,13 +14,7 @@ using UnityEngine.Events;
 public class CharCombat : MonoBehaviour
 {
     //State vars
-    [SerializeField]
-    private float punchDamage;
-    [SerializeField]
-    private float fireDamage;
-
     private Attack[] attacks;
-    FireAttackBox fire;
     private Animator anim;
     private bool takingDamage;
     bool canAttack;
