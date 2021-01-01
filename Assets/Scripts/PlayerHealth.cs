@@ -21,8 +21,15 @@ public class PlayerHealth : Health
     {
         combat = GetComponent<CharCombat>();
         healing = false;
+
+        this.OnDeath += Dead;
     }
-    // Start is called before the first frame update
+
+    private void OnDestroy()
+    {
+        this.OnDeath -= Dead;
+    }
+
     void Start()
     {
         health = initialHealth;
@@ -58,10 +65,14 @@ public class PlayerHealth : Health
         {
             base.Damage(amount);
             combat.StartTakingDamage();
-            Debug.Log("Player health is now " + health);
             healing = false;
             nextHealTime = Time.time + healingCountdown;
             HealthChanged();
         }
+    }
+
+    public void Dead()
+    {
+        Debug.Log("You have died.");
     }
 }

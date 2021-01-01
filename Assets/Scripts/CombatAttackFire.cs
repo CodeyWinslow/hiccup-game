@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharCombat))]
-public class CombatAttackFire : Attack
+public class CombatAttackFire : Attack, IContainsMeter
 {
     //State vars
     [SerializeField]
@@ -91,13 +91,13 @@ public class CombatAttackFire : Attack
         return true;
     }
 
-    public void BindFireMeter(System.EventHandler<float> handler)
+    public void BindMeterChanged(System.EventHandler<float> handler)
     {
         fireMeter.OnValueChanged += handler;
         handler(this, fireMeter.Value);
     }
 
-    public void UnbindFireMeter(System.EventHandler<float> handler)
+    public void UnbindMeterChanged(System.EventHandler<float> handler)
     {
         fireMeter.OnValueChanged -= handler;
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharCombat))]
-public class CombatAttackFoam : Attack
+public class CombatAttackFoam : Attack, IContainsMeter
 {
     [SerializeField]
     float timeToSpawnFoam;
@@ -100,13 +100,13 @@ public class CombatAttackFoam : Attack
         OnRelease();
     }
 
-    public void BindValueChanged(EventHandler<float> handler)
+    public void BindMeterChanged(EventHandler<float> handler)
     {
         foamMeter.OnValueChanged += handler;
         handler(this, foamMeter.Value);
     }
 
-    public void UnbindValueChanged(EventHandler<float> handler)
+    public void UnbindMeterChanged(EventHandler<float> handler)
     {
         foamMeter.OnValueChanged -= handler;
     }

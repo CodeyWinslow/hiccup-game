@@ -15,7 +15,7 @@ public class EnemyMovement : Movement
     EnemySight sight;
     Animator anim;
     Transform playerPosition;
-    Vector3 originalPosition;
+    Vector3 defaultPosition;
 
     //Monobehavior Lifecycle
     void Awake()
@@ -30,7 +30,6 @@ public class EnemyMovement : Movement
 
     private void Start()
     {
-        originalPosition = transform.position;
         agent.speed = Random.Range(minMoveSpeed, maxMoveSpeed);
         if (Player.GetPlayer())
         playerPosition = Player.GetPlayer().gameObject.transform;
@@ -63,7 +62,7 @@ public class EnemyMovement : Movement
             }
             else
             {
-                agent.SetDestination(originalPosition);
+                agent.SetDestination(defaultPosition);
             }
         }
     }
@@ -76,5 +75,10 @@ public class EnemyMovement : Movement
     public override void ChangeSpeed(float speed)
     {
         agent.speed = speed;
+    }
+
+    public void SetDefaultPosition(Vector3 position)
+    {
+        defaultPosition = position;
     }
 }

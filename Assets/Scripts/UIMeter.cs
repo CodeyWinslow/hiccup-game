@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIFoamMeter : MonoBehaviour
+public abstract class UIMeter : MonoBehaviour
 {
     [SerializeField]
-    float maxAmount;
+    protected float maxAmount;
 
-    CombatAttackFoam combat;
+    protected IContainsMeter meter;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-        combat = Player.GetPlayer()?.GetComponent<CombatAttackFoam>();
-        Asserts.AssertNotNull(combat, "Player must have a CombatAttackFoam component");
-        combat.BindValueChanged(MeterChanged);
+        meter?.BindMeterChanged(OnMeterChanged);
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
-        combat.BindValueChanged(MeterChanged);
+        meter?.UnbindMeterChanged(OnMeterChanged);
     }
 
-    public void MeterChanged(object sender, float amount)
+    public virtual void OnMeterChanged(object sender, float amount)
     {
         if (amount == 0)
             transform.localScale = Vector3.zero;

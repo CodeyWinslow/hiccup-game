@@ -30,7 +30,6 @@ public class EnemyHealth : Health
         {
             combat.StartTakingDamage();
             base.Damage(amount);
-            Debug.Log("Enemy has " + health + " health");
             HealthChanged();
         }
     }
