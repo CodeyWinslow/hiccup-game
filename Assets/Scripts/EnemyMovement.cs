@@ -7,15 +7,18 @@ public class EnemyMovement : Movement
 {
     //State Vars
     [SerializeField]
-    public float minMoveSpeed = 5f;
+    float walkSpeed;
     [SerializeField]
-    public float maxMoveSpeed = 5f;
+    float minRunSpeed = 5f;
+    [SerializeField]
+    float maxRunSpeed = 5f;
 
     NavMeshAgent agent;
     EnemySight sight;
     Animator anim;
     Transform playerPosition;
     Vector3 defaultPosition;
+    bool hostile = false;
 
     //Monobehavior Lifecycle
     void Awake()
@@ -26,11 +29,19 @@ public class EnemyMovement : Movement
         Asserts.AssertNotNull(anim, "Must have an Animator component on Enemy mesh");
         sight = GetComponentInChildren<EnemySight>();
         Asserts.AssertNotNull(sight, "Must have an EnemySight component on Enemy mesh");
+
+        EnemyHealth.WasHurt += OnHurt;
+    }
+
+    private void OnDestroy()
+    {
+        if (!hostile)
+            EnemyHealth.WasHurt -= OnHurt;
     }
 
     private void Start()
     {
-        agent.speed = Random.Range(minMoveSpeed, maxMoveSpeed);
+        agent.speed = walkSpeed;
         if (Player.GetPlayer())
         playerPosition = Player.GetPlayer().gameObject.transform;
     }
@@ -39,7 +50,8 @@ public class EnemyMovement : Movement
     {
         if (agent.enabled)
         {
-            if (playerPosition != null
+            if (hostile
+                && playerPosition != null
                 && sight.CanSeePlayer)
             {
                 agent.SetDestination(playerPosition.position);
@@ -80,5 +92,12 @@ public class EnemyMovement : Movement
     public void SetDefaultPosition(Vector3 position)
     {
         defaultPosition = position;
+    }
+
+    public void OnHurt(object sender, System.EventArgs e)
+    {
+        EnemyHealth.WasHurt -= OnHurt;
+        agent.speed = Random.Range(minRunSpeed, maxRunSpeed);
+        hostile = true;
     }
 }

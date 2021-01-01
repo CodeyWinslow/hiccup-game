@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class EnemyHealth : Health
     float initialHealth;
 
     EnemyAttacks combat;
+
+    public static event EventHandler WasHurt;
 
     //Monobehavior Lifecycle
     private void Awake()
@@ -26,6 +29,8 @@ public class EnemyHealth : Health
     //State Logic
     public override void Damage(float amount)
     {
+        WasHurt?.Invoke(this, null);
+
         if (!combat.TakingDamage)
         {
             combat.StartTakingDamage();

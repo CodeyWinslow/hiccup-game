@@ -22,6 +22,7 @@ public class EnemyAttacks : MonoBehaviour
     bool takingDamage = false;
     float nextAttackTime;
     bool alive = true;
+    bool hostile = false;
 
     //Attributes
     public bool TakingDamage
@@ -42,13 +43,22 @@ public class EnemyAttacks : MonoBehaviour
         Asserts.AssertNotNull(health, "Enemy must have EnemyHealth component");
 
         attacking.PlayerInRange += WhenInRange;
+
+        if (!hostile)
+            attacking.gameObject.SetActive(false);
+
         health.OnDeath += OnDeath;
+
+        EnemyHealth.WasHurt += WasAttacked;
     }
 
     private void OnDestroy()
     {
         attacking.PlayerInRange -= WhenInRange;
         health.OnDeath -= OnDeath;
+
+        if (!hostile)
+            EnemyHealth.WasHurt -= WasAttacked;
     }
 
     private void FixedUpdate()
@@ -90,6 +100,19 @@ public class EnemyAttacks : MonoBehaviour
         health.enabled = false;
         GetComponent<CharacterController>().enabled = false;
         GameObject.Destroy(gameObject, timeToDestroyAfterDeath);
+    }
+
+    public void WasAttacked(object sender, System.EventArgs e)
+    {
+        EnemyHealth.WasHurt -= WasAttacked;
+        TurnHostile();
+    }
+
+    public void TurnHostile()
+    {
+        hostile = true;
+        attacking.gameObject.SetActive(true);
+        anim.SetBool("Fighting", true);
     }
 
     //Animation Events
