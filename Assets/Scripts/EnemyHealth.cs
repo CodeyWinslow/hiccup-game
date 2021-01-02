@@ -11,6 +11,17 @@ public class EnemyHealth : Health
     EnemyAttacks combat;
 
     public static event EventHandler WasHurt;
+    public static event EventHandler OnEnemyDeath;
+
+    public EnemyHealth()
+    {
+        base.OnDeath += WhenDead;
+    }
+
+    ~EnemyHealth()
+    {
+        base.OnDeath -= WhenDead;
+    }
 
     //Monobehavior Lifecycle
     private void Awake()
@@ -37,5 +48,10 @@ public class EnemyHealth : Health
             base.Damage(amount);
             HealthChanged();
         }
+    }
+
+    public void WhenDead()
+    {
+        OnEnemyDeath?.Invoke(this, null);
     }
 }

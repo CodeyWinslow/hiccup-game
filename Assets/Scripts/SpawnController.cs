@@ -29,17 +29,17 @@ public class SpawnController : MonoBehaviour
     int enemyLimit = 20;
 
     EnemySpawn[] spawners;
-
+    GameController gc;
     int numEnemies = 0;
+
+    public int MaxEnemies {
+        get { return enemyLimit; }
+        set { enemyLimit = value; }
+    }
 
     public event EventHandler TurnOffSpawners;
     public event EventHandler TurnOnSpawners;
     public event EventHandler ForceSpawn;
-
-    private SpawnController()
-    {
-        
-    }
 
     ~SpawnController()
     {
@@ -49,6 +49,8 @@ public class SpawnController : MonoBehaviour
 
     private void Awake()
     {
+        gc = GameController.GetInstance();
+
         GameObject[] objs = GameObject.FindGameObjectsWithTag(spawnerTag);
         spawners = new EnemySpawn[objs.Length];
 
@@ -59,8 +61,14 @@ public class SpawnController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        gc.RoundChanged -= RoundChanged;
+    }
+
     private void Start()
     {
+        gc.RoundChanged += RoundChanged;
     }
 
     public void EnemySpawned(object sender, EventArgs e)
@@ -68,6 +76,15 @@ public class SpawnController : MonoBehaviour
         if (++numEnemies >= enemyLimit)
         {
             TurnOffSpawners?.Invoke(this, null);
+        }
+    }
+
+    public void RoundChanged(object sender, int e)
+    {
+        if (e > 1)
+        {
+            numEnemies = 0;
+            TurnOnSpawners?.Invoke(this, null);
         }
     }
 }
