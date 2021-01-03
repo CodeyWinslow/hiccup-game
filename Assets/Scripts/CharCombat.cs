@@ -14,10 +14,16 @@ using UnityEngine.Events;
 public class CharCombat : MonoBehaviour
 {
     //State vars
+    [SerializeField]
+    string attackButton;
+    [SerializeField]
+    string switchButton;
+
     private Attack[] attacks;
     private Animator anim;
     private bool takingDamage;
     bool canAttack;
+    int attackIndex;
     Attack currentAttack;
 
     //Attributes
@@ -27,7 +33,7 @@ public class CharCombat : MonoBehaviour
         set => canAttack = value;
     }
 
-    public bool CanMove {get; set;}
+    public bool CanMove { get; set; }
 
     public bool TakingDamage
     {
@@ -42,6 +48,7 @@ public class CharCombat : MonoBehaviour
 
     //Events
     public event EventHandler Hurt;
+    public event System.EventHandler<Attack> SwitchedAttack;
 
     //Monobehavior Lifecycle
     private void Awake()
@@ -52,10 +59,25 @@ public class CharCombat : MonoBehaviour
 
         CanMove = true;
         CanAttack = true;
+        attackIndex = 0;
         currentAttack = null;
+        if (attacks.Length >= 0)
+            currentAttack = attacks[attackIndex];
         takingDamage = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown(attackButton))
+            currentAttack?.AttackPressed();
+
+        if (Input.GetButtonUp(attackButton))
+            currentAttack?.AttackReleased();
+
+        if (Input.GetButtonDown(switchButton)
+            && CanAttack)
+            SwitchNextAttack();
+    }
     //State Logic
     public void StartTakingDamage()
     {
@@ -68,5 +90,17 @@ public class CharCombat : MonoBehaviour
     public void FemaleStaggerEnd()
     {
         takingDamage = false;
+    }
+
+    public void SwitchNextAttack()
+    {
+        if (++attackIndex >= attacks.Length)
+            attackIndex = 0;
+
+        if (attacks.Length >= 0)
+        {
+            currentAttack = attacks[attackIndex];
+            SwitchedAttack?.Invoke(this, currentAttack);
+        }
     }
 }

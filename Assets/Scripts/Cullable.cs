@@ -22,9 +22,17 @@ public class Cullable : MonoBehaviour
             rend.materials = new Material[1]{ hideMat };
     }
 
+    public void Disappear()
+    {
+        rend.enabled = false;
+    }
+
     public void Show()
     {
         if (rend)
+        {
+            rend.enabled = true;
             rend.materials = originalMaterials.Clone() as Material[];
+        }
     }
 }

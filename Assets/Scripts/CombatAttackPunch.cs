@@ -20,12 +20,12 @@ public class CombatAttackPunch : Attack
         anim = GetComponentInChildren<Animator>();
         att = GetComponentInChildren<AttackBox>();
         Asserts.AssertNotNull(att, "Player must have an AttackBox component");
-        AttackPressed += OnAttack;
+        //AttackPressed += OnAttack;
     }
 
     private void OnDestroy()
     {
-        AttackPressed -= OnAttack;
+        //AttackPressed -= OnAttack;
     }
 
     //State Logic
@@ -33,11 +33,20 @@ public class CombatAttackPunch : Attack
     {
         if (combat.CanAttack)
         {
-            combat.CurrentAttack = this;
+            //combat.CurrentAttack = this;
             combat.CanAttack = false;
             combat.CanMove = false;
             anim.SetTrigger("AttackPunch");
         }
+    }
+
+    public override void AttackPressed()
+    {
+        OnAttack();
+    }
+
+    public override void AttackReleased()
+    {
     }
 
     //Animation Events
@@ -50,7 +59,6 @@ public class CombatAttackPunch : Attack
     {
         if (combat.CurrentAttack == this)
         {
-            combat.CurrentAttack = null;
             combat.CanAttack = true;
             combat.CanMove = true;
         }

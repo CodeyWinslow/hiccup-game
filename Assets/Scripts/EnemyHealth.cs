@@ -40,6 +40,8 @@ public class EnemyHealth : Health
     //State Logic
     public override void Damage(float amount)
     {
+        if (health <= 0) return;
+
         WasHurt?.Invoke(this, null);
 
         if (!combat.TakingDamage)

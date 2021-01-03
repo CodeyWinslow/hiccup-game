@@ -34,16 +34,18 @@ public class CombatAttackFoam : Attack, IContainsMeter
         effect = GetComponentInChildren<FoamEffect>();
         Asserts.AssertNotNull(effect, "Player must have FoamEffect component");
 
-        AttackPressed += OnAttack;
-        AttackReleased += OnRelease;
+        //AttackPressed += OnAttack;
+        //AttackReleased += OnRelease;
         foamMeter.OnValueZero += OnMeterZero;
+        combat.Hurt += AttackReleased;
     }
 
     private void OnDestroy()
     {
-        AttackPressed -= OnAttack;
-        AttackReleased -= OnRelease;
+        //AttackPressed -= OnAttack;
+        //AttackReleased -= OnRelease;
         foamMeter.OnValueZero -= OnMeterZero;
+        combat.Hurt -= AttackReleased;
     }
 
     private void FixedUpdate()
@@ -63,15 +65,21 @@ public class CombatAttackFoam : Attack, IContainsMeter
 
     public override void OnAttack()
     {
+
         if (combat.CanAttack && foamMeter.Value >= foamCost)
         {
-            combat.CurrentAttack = this;
+            //combat.CurrentAttack = this;
             combat.CanAttack = false;
             combat.CanMove = false;
             foaming = true;
             nextSpawnTime = Time.time + timeToSpawnFoam;
             effect.StartEffect();
         }
+    }
+
+    public override void AttackPressed()
+    {
+        OnAttack();
     }
 
     public bool AddFoamPoints(float points)
@@ -83,11 +91,10 @@ public class CombatAttackFoam : Attack, IContainsMeter
         return true;
     }
 
-    void OnRelease()
+    public override void AttackReleased()
     {
         if (combat.CurrentAttack == this)
         {
-            combat.CurrentAttack = null;
             combat.CanAttack = true;
             combat.CanMove = true;
             foaming = false;
@@ -97,7 +104,7 @@ public class CombatAttackFoam : Attack, IContainsMeter
 
     void OnMeterZero(object sender, EventArgs e)
     {
-        OnRelease();
+        AttackReleased();
     }
 
     public void BindMeterChanged(EventHandler<float> handler)

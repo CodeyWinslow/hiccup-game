@@ -5,22 +5,25 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour, IAttack
 {
-    [SerializeField]
-    string inputButton;
+    //[SerializeField]
+    //string inputButton;
 
     protected CharCombat combat;
 
-    public event EventHandler AttackPressed;
-    public event EventHandler AttackReleased;
+    public abstract void AttackPressed();
+    public abstract void AttackReleased();
 
-    void Update()
-    {
-        if (Input.GetButtonDown(inputButton))
-            AttackPressed?.Invoke();
+    //public event EventHandler AttackPressed;
+    //public event EventHandler AttackReleased;
 
-        if (Input.GetButtonUp(inputButton))
-            AttackReleased?.Invoke();
-    }
+    //void Update()
+    //{
+    //    if (Input.GetButtonDown(inputButton))
+    //        AttackPressed?.Invoke();
+
+    //    if (Input.GetButtonUp(inputButton))
+    //        AttackReleased?.Invoke();
+    //}
 
     public abstract void OnAttack();
 }

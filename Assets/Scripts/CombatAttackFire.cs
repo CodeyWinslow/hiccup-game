@@ -33,17 +33,17 @@ public class CombatAttackFire : Attack, IContainsMeter
         Asserts.AssertNotNull(fire, "Player must have FireAttackBox component");
 
         //subscriptions
-        AttackPressed += OnAttack;
-        AttackReleased += OnAttackRelease;
-        combat.Hurt += OnAttackRelease;
+        //AttackPressed += OnAttack;
+        //AttackReleased += OnAttackRelease;
+        combat.Hurt += AttackReleased;
         fireMeter.OnValueZero += OnMeterZero;
     }
 
     private void OnDestroy()
     {
-        AttackPressed -= OnAttack;
-        AttackReleased -= OnAttackRelease;
-        combat.Hurt -= OnAttackRelease;
+        //AttackPressed -= OnAttack;
+        //AttackReleased -= OnAttackRelease;
+        combat.Hurt -= AttackReleased;
         fireMeter.OnValueZero -= OnMeterZero;
     }
 
@@ -59,19 +59,22 @@ public class CombatAttackFire : Attack, IContainsMeter
         if (combat.CanAttack && fireMeter.Value > 0)
         {
             attacking = true;
-            combat.CurrentAttack = this;
             combat.CanMove = true;
             combat.CanAttack = false;
             fire.Activate(fireDamagePerSecond);
         }
     }
 
-    void OnAttackRelease()
+    public override void AttackPressed()
+    {
+        OnAttack();
+    }
+
+    public override void AttackReleased()
     {
         if (combat.CurrentAttack == this)
         {
             attacking = false;
-            combat.CurrentAttack = null;
             combat.CanAttack = true;
             fire.Deactivate();
         }
@@ -79,7 +82,7 @@ public class CombatAttackFire : Attack, IContainsMeter
 
     void OnMeterZero(object sender, EventArgs e)
     {
-        OnAttackRelease();
+        AttackReleased();
     }
 
     public bool AddFirePoints(float points)

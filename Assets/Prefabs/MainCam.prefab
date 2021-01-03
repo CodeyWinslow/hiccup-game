@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1066152222379014050}
   - component: {fileID: 1066152222379014053}
   - component: {fileID: 1066152222379014054}
-  m_Layer: 8
-  m_Name: Main Camera
+  m_Layer: 15
+  m_Name: MainCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,57 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a6d60d0f2a89642b5f3120d41da654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  environmentLayer:
+  raycastRadius: 0
+  environmentLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
+  environmentTag: 
   stopTransform: {fileID: 0}
+  hideMat: {fileID: 0}
 --- !u!114 &1066152222379014054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +118,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 3.43, z: -4.36}
+  camForward: {x: 0, y: 0, z: 0}

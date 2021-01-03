@@ -99,6 +99,8 @@ public class EnemyAttacks : MonoBehaviour
         attacking.enabled = false;
         health.enabled = false;
         GetComponent<CharacterController>().enabled = false;
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+            c.enabled = false;
         GameObject.Destroy(gameObject, timeToDestroyAfterDeath);
     }
 

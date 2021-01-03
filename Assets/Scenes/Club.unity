@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.518
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.518}
+  m_IndirectSpecularColor: {r: 0.024569472, g: 0.025424961, b: 0.034054656, a: 0.518}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,6 +270,41 @@ Transform:
   m_Father: {fileID: 724866538}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &34077668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1066152222379014049, guid: 6b36a89b7999d0e47972f46d59903686,
+    type: 3}
+  m_PrefabInstance: {fileID: 1732735687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &34077669
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34077668}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &34077670
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34077668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &36719542
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +604,7 @@ Transform:
   m_LocalScale: {x: 1.9005, y: 2.4223, z: 0.2973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59547710 stripped
 GameObject:
@@ -861,7 +896,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1078,7 +1113,7 @@ GameObject:
   - component: {fileID: 202526077}
   - component: {fileID: 202526076}
   m_Layer: 5
-  m_Name: FloorInfo
+  m_Name: GameInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1151,20 +1186,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202526075}
-  m_LocalRotation: {x: 0.7071071, y: -0, z: -0, w: 0.7071065}
-  m_LocalPosition: {x: 0, y: 0, z: 11.49}
-  m_LocalScale: {x: 0.38825536, y: 0.31548867, z: 1}
+  m_LocalRotation: {x: -1.6238393e-13, y: 1, z: 0.0000004917383, w: -0.00000035762784}
+  m_LocalPosition: {x: 0, y: 0, z: -12.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1037489244}
   - {fileID: 1874428693}
+  - {fileID: 1037489244}
   - {fileID: 1034884408}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.47, y: -0.06}
-  m_SizeDelta: {x: 50, y: 35}
+  m_AnchoredPosition: {x: -1.76, y: 1.47}
+  m_SizeDelta: {x: 13.88, y: 2.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &207847052 stripped
 GameObject:
@@ -1390,7 +1425,7 @@ Transform:
   - {fileID: 1955457800}
   - {fileID: 1099900434}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240451698
 GameObject:
@@ -1608,10 +1643,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 4.9999695, y: 0}
-  m_SizeDelta: {x: -10.000061, y: 15.3}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
+  m_SizeDelta: {x: 60, y: 16}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &263724409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,7 +2293,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2858,7 +2893,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3746,10 +3781,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 4.9999695, y: 0}
-  m_SizeDelta: {x: -10.000061, y: 15.3}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
+  m_SizeDelta: {x: 60, y: 16}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &454278332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4366,7 +4401,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -5937,7 +5972,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6218,7 +6253,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6313,10 +6348,10 @@ RectTransform:
   m_Father: {fileID: 1071180153}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0.5}
-  m_AnchorMax: {x: 0.9, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 15}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 35, y: 0}
+  m_SizeDelta: {x: -90, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699417852
 MonoBehaviour:
@@ -6602,7 +6637,7 @@ Transform:
   - {fileID: 2099228106}
   - {fileID: 2105941565}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725846716
 GameObject:
@@ -6732,7 +6767,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6947,7 +6982,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -7646,7 +7681,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &916266591 stripped
 GameObject:
@@ -7849,7 +7884,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -8850,7 +8885,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -9051,7 +9086,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -9278,10 +9313,10 @@ RectTransform:
   m_Father: {fileID: 202526079}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: 0, y: 6}
+  m_AnchorMin: {x: 0.62, y: 0}
+  m_AnchorMax: {x: 1, y: 0.25}
+  m_AnchoredPosition: {x: 0, y: 0.09999996}
+  m_SizeDelta: {x: 0, y: -0.20000008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034884409
 MonoBehaviour:
@@ -9330,11 +9365,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 5
   m_fontSizeBase: 19.8
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
@@ -9494,12 +9529,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 202526079}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0.25}
+  m_AnchoredPosition: {x: 0, y: 0.09999996}
+  m_SizeDelta: {x: 0, y: -0.20000008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037489245
 MonoBehaviour:
@@ -9548,11 +9583,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 5
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
@@ -9565,7 +9600,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -9767,7 +9802,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -9827,7 +9862,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.4, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9989,7 +10024,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -10367,7 +10402,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -11234,10 +11269,10 @@ RectTransform:
   m_Father: {fileID: 1347163930}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0.5}
-  m_AnchorMax: {x: 0.9, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 15}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 35, y: 0}
+  m_SizeDelta: {x: -90, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1218016299
 MonoBehaviour:
@@ -11424,7 +11459,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -12470,7 +12505,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -12838,7 +12873,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.4, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13278,7 +13313,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -13389,7 +13424,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -13657,7 +13692,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8883670233872231363, guid: 35a7d0acdf6efe04db9b3fe89f8ae679, type: 3}
 --- !u!114 &1551743049
@@ -13698,20 +13733,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1220594059, guid: 53aea3642e5d4e449b9cb23baa246fe1, type: 3}
+      propertyPath: attackButton
+      value: Fire1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220594059, guid: 53aea3642e5d4e449b9cb23baa246fe1, type: 3}
+      propertyPath: switchButton
+      value: Fire3
+      objectReference: {fileID: 0}
     - target: {fileID: 583670722735740913, guid: 53aea3642e5d4e449b9cb23baa246fe1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.258
+      value: 8.98
       objectReference: {fileID: 0}
     - target: {fileID: 583670722735740913, guid: 53aea3642e5d4e449b9cb23baa246fe1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.018
+      value: 0.108
       objectReference: {fileID: 0}
     - target: {fileID: 583670722735740913, guid: 53aea3642e5d4e449b9cb23baa246fe1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.34
+      value: -12.47
       objectReference: {fileID: 0}
     - target: {fileID: 583670722735740913, guid: 53aea3642e5d4e449b9cb23baa246fe1,
         type: 3}
@@ -13974,7 +14017,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -14137,7 +14180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerTag: Spawner
-  enemyLimit: 10
+  enemyLimit: 2
 --- !u!4 &1623086802
 Transform:
   m_ObjectHideFlags: 0
@@ -14150,7 +14193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628185844
 GameObject:
@@ -14440,37 +14483,37 @@ PrefabInstance:
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.258
+      value: 6.9799995
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.497
+      value: 3.587
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.66
+      value: -10.47
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.27984816
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.3647052
+      value: 0.8804763
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1159169
+      value: -0.27984816
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8804763
+      value: 0.3647052
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014052, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
@@ -14677,6 +14720,11 @@ PrefabInstance:
       propertyPath: hideMat
       value: 
       objectReference: {fileID: 2100000, guid: 11eb099f1b1a9fd419f05ec26e6e9465, type: 2}
+    - target: {fileID: 1066152222379014053, guid: 6b36a89b7999d0e47972f46d59903686,
+        type: 3}
+      propertyPath: raycastRadius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014054, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: target
@@ -14685,7 +14733,7 @@ PrefabInstance:
     - target: {fileID: 1066152222379014054, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: offset.z
-      value: -2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014054, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
@@ -14695,7 +14743,7 @@ PrefabInstance:
     - target: {fileID: 1066152222379014054, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
       propertyPath: camForward.z
-      value: 0.57735026
+      value: -0.57735026
       objectReference: {fileID: 0}
     - target: {fileID: 1066152222379014054, guid: 6b36a89b7999d0e47972f46d59903686,
         type: 3}
@@ -16781,10 +16829,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 202526079}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.8}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16807,7 +16855,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: XXX Kills
+  m_text: X Knockouts
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16835,11 +16883,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
+  m_fontSize: 18.65
   m_fontSizeBase: 42.61
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
@@ -16876,7 +16924,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1874428694}
-    characterCount: 9
+    characterCount: 11
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -17084,7 +17132,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -17646,7 +17694,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
