@@ -15,9 +15,12 @@ public class CharMovement : Movement
 
     CharacterController cont;
     GroundDetection grounded;
+    Animator anim;
     CharCombat combatBehavior;
+    EnemyTargeting targeting;
     CameraFollow camFol;
     Vector3 move;
+    Vector3 velocity;
     float yspeed;
     bool jumping = false;
 
@@ -30,10 +33,15 @@ public class CharMovement : Movement
         Asserts.AssertNotNull(camFol, "Main camera must have CameraFollow component");
         grounded = GetComponentInChildren<GroundDetection>();
         Asserts.AssertNotNull(grounded, "Player must have GroundDetection component");
-        combatBehavior = GetComponentInParent<CharCombat>();
+        anim = GetComponentInChildren<Animator>();
+        Asserts.AssertNotNull(anim, "Player must have an Animator component");
+        combatBehavior = GetComponent<CharCombat>();
         Asserts.AssertNotNull(combatBehavior, "Player must have CharCombat component");
+        targeting = GetComponentInChildren<EnemyTargeting>();
+        Asserts.AssertNotNull(targeting, "Player must have EnemyTarget component");
 
         move = Vector3.zero;
+        velocity = Vector3.zero;
         yspeed = 0;
     }
 
@@ -43,6 +51,10 @@ public class CharMovement : Movement
         move = Vector3.zero;
         move.z = Input.GetAxis("Vertical");
         move.x = Input.GetAxis("Horizontal");
+
+        //animate movement
+        anim.SetFloat("RunningForward", Vector3.Dot(velocity, transform.forward));
+        anim.SetFloat("Strafe", Vector3.Dot(velocity, transform.right));
 
         //check if trying to jump
         if (Input.GetButtonDown("Jump")) jumping = true;
@@ -55,24 +67,14 @@ public class CharMovement : Movement
         if (combatBehavior.CanMove)
         {
             //adjust to camera forward
-            float x = move.x;
-            float z = move.z;
-            move = Vector3.zero;
-            move += z * camFol.camForward;
-            move += x * Vector3.Cross(Vector3.up, camFol.camForward);
+            move = DesiredDirectionFromCamera(move);
 
             //rotate to direction
-            Vector3 nextRot = transform.rotation.eulerAngles;
-
-            float desiredRotation = nextRot.y;
-            if (move.magnitude > 0)
-                desiredRotation = Quaternion.LookRotation(move, Vector3.up).eulerAngles.y;
-
-            nextRot.y = desiredRotation;
-            Quaternion newRot = Quaternion.Euler(nextRot);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, 0.2f);
-
+            if (targeting.Targeting && targeting.HasTarget)
+                RotatePlayerToDirection(targeting.TargetTransform.position - transform.position);
+            else
+                RotatePlayerToDirection(move);
+            
             //normalize only if needed (allows slow movement)
             if (move.magnitude > 1)
                 move.Normalize();
@@ -98,11 +100,40 @@ public class CharMovement : Movement
         jumping = false;
 
         //apply movespeed and yspeed
-        move *= moveSpeed;
-        move.y = yspeed;
+        velocity = moveSpeed * move;
+        velocity.y = yspeed;
 
         //move
-        cont.Move(move * Time.deltaTime);
+        cont.Move(velocity * Time.deltaTime);
+    }
+
+    Vector3 DesiredDirectionFromCamera(Vector3 input)
+    {
+        float x = input.x;
+        float z = input.z;
+        input = Vector3.zero;
+        input += z * camFol.camForward;
+        input += x * Vector3.Cross(Vector3.up, camFol.camForward);
+
+        return input;
+    }
+
+    void RotatePlayerToDirection(Vector3 dir)
+    {
+        if (dir.magnitude == 0)
+            return;
+
+        Vector3 nextRot = transform.rotation.eulerAngles;
+
+        float desiredRotation = nextRot.y;
+
+        desiredRotation = Quaternion.LookRotation(dir, Vector3.up).eulerAngles.y;
+
+        nextRot.y = desiredRotation;
+
+        Quaternion newRot = Quaternion.Euler(nextRot);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRot, 0.2f);
     }
 
     public override void ChangeSpeed(float speed)

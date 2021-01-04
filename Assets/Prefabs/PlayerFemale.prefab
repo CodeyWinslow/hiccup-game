@@ -4985,6 +4985,7 @@ Transform:
   - {fileID: 1591640934}
   - {fileID: 8582618130291167484}
   - {fileID: 3865247016933652082}
+  - {fileID: 4357477710763897921}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5049,6 +5050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cb58b3d8d4cc34ba96a3e4bdea9de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackButton: Fire1
+  switchButton: SwitchAttack
 --- !u!114 &8320761137441828616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5085,7 +5088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6cd678887ba84c939126ac8f756b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButton: Fire1
   punchDamage: 20
 --- !u!114 &1561260048
 MonoBehaviour:
@@ -5099,7 +5101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976752e16bf9f6941947280eb1a1ae8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButton: Fire2
   fireDamagePerSecond: 10
   fireCostPerSecond: 20
   maxFirePoints: 100
@@ -5115,7 +5116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e796625c224d50e4b9f648d765d203cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButton: Fire3
   timeToSpawnFoam: 0.5
   foamCost: 10
   maxFoamPoints: 100
@@ -5133,6 +5133,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowSpeed: 4
   normalSpeed: 8
+--- !u!1 &3906765448814500222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4357477710763897921}
+  - component: {fileID: 1192676740909815339}
+  - component: {fileID: 4303663370992575874}
+  - component: {fileID: 4990625422616606828}
+  m_Layer: 16
+  m_Name: EnemyTargeting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4357477710763897921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906765448814500222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.79, z: 0}
+  m_LocalScale: {x: 10, y: 1.8, z: 10}
+  m_Children: []
+  m_Father: {fileID: 583670722735740913}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1192676740909815339
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906765448814500222}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &4303663370992575874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906765448814500222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4990625422616606828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906765448814500222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b2f4b4225392b439353789ba9e54e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4152648482940548531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,7 +5435,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.48
+      scalar: 0.63
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5468,7 +5542,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8962264, g: 0.7388046, b: 0.5284354, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6111,7 +6185,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 114.72
+      scalar: 300.7
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6541,7 +6615,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -6549,17 +6623,17 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.9433962, g: 0.7795607, b: 0.4138483, a: 1}
+        key1: {r: 0.94556046, g: 0.78798926, b: 0.43625998, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
+        ctime1: 29876
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -6567,14 +6641,14 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
