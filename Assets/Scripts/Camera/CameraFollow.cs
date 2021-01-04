@@ -10,21 +10,29 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 camForward;
 
-    private void Awake()
+    private void Start()
     {
-        camForward = Vector3.forward;
+        camForward = offset * -1;
+        camForward.y = 0;
+        camForward.Normalize();
     }
 
     // Update is called once per frame
     void LateUpdate()
+    {
+        LockOnTarget();
+
+        //Vector3 toTarget = target.position - transform.position;
+        //toTarget.y = 0;
+        //camForward = toTarget.normalized;
+    }
+
+    void LockOnTarget()
     {
         if (target)
         {
             transform.position = target.position + offset;
             transform.LookAt(target);
         }
-
-        camForward = (target.position - transform.position).normalized;
-        camForward.y = 0;
     }
 }

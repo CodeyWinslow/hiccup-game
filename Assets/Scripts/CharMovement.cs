@@ -53,8 +53,8 @@ public class CharMovement : Movement
         move.x = Input.GetAxis("Horizontal");
 
         //animate movement
-        anim.SetFloat("RunningForward", Vector3.Dot(velocity, transform.forward));
-        anim.SetFloat("Strafe", Vector3.Dot(velocity, transform.right));
+        anim.SetFloat("RunningForward", Vector3.Dot(velocity/moveSpeed, transform.forward));
+        anim.SetFloat("Strafe", Vector3.Dot(velocity/moveSpeed, transform.right));
 
         //check if trying to jump
         if (Input.GetButtonDown("Jump")) jumping = true;

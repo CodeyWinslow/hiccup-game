@@ -15,6 +15,8 @@ public class CharCombat : MonoBehaviour
 {
     //State vars
     [SerializeField]
+    SpriteRenderer attackIndicator;
+    [SerializeField]
     string attackButton;
     [SerializeField]
     string switchButton;
@@ -62,7 +64,10 @@ public class CharCombat : MonoBehaviour
         attackIndex = 0;
         currentAttack = null;
         if (attacks.Length >= 0)
+        {
             currentAttack = attacks[attackIndex];
+            SetAttackSprite(currentAttack.Indicator);
+        }
         takingDamage = false;
     }
 
@@ -100,7 +105,14 @@ public class CharCombat : MonoBehaviour
         if (attacks.Length >= 0)
         {
             currentAttack = attacks[attackIndex];
+            SetAttackSprite(currentAttack.Indicator);
             SwitchedAttack?.Invoke(this, currentAttack);
         }
+    }
+
+    public void SetAttackSprite(Sprite sprite)
+    {
+        if (attackIndicator)
+            attackIndicator.sprite = sprite;
     }
 }

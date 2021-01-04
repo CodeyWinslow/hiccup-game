@@ -5,10 +5,12 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour, IAttack
 {
-    //[SerializeField]
-    //string inputButton;
+    [SerializeField]
+    protected Sprite indicator;
 
     protected CharCombat combat;
+
+    public Sprite Indicator => indicator;
 
     public abstract void AttackPressed();
     public abstract void AttackReleased();
