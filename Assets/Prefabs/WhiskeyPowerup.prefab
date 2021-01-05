@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2305481317359609087}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.426, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0.023272786}
+  m_LocalScale: {x: 0.87944907, y: 0.87944883, z: 0.87944883}
   m_Children: []
-  m_Father: {fileID: 2305481318102829825}
-  m_RootOrder: 1
+  m_Father: {fileID: 2305481317831990825}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &2305481317359609074
 ParticleSystemRenderer:
@@ -4779,13 +4779,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2305481317831990824}
-  m_LocalRotation: {x: -0.70710695, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18.304642, y: 18.304642, z: 18.304642}
-  m_Children: []
-  m_Father: {fileID: 2305481318102829825}
+  m_LocalScale: {x: 18.30464, y: 18.304642, z: 18.304642}
+  m_Children:
+  - {fileID: 2305481317359609084}
+  m_Father: {fileID: 6315907010418440945}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &2305481317831990831
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4845,6 +4846,7 @@ GameObject:
   - component: {fileID: 2305481318102829824}
   - component: {fileID: 2305481318102829827}
   - component: {fileID: -3149308319729193846}
+  - component: {fileID: -282294999577929785}
   m_Layer: 0
   m_Name: WhiskeyPowerup
   m_TagString: Untagged
@@ -4863,8 +4865,7 @@ Transform:
   m_LocalPosition: {x: 1.68, y: 0.63, z: 4.65}
   m_LocalScale: {x: 1.4235, y: 1.4235, z: 1.4235}
   m_Children:
-  - {fileID: 2305481317831990825}
-  - {fileID: 2305481317359609084}
+  - {fileID: 6315907010418440945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4907,3 +4908,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnTimer: 60
+--- !u!114 &-282294999577929785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2305481318102829826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbc05d16f86b854e9acba8142d1d3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  negOffset: {x: -0.2, y: 0, z: -0.2}
+  posOffset: {x: 0.2, y: 0, z: 0.2}
+--- !u!1 &5832973254260702128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6315907010418440945}
+  - component: {fileID: 818104559416713184}
+  m_Layer: 0
+  m_Name: MeshCorrect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6315907010418440945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832973254260702128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2305481317831990825}
+  m_Father: {fileID: 2305481318102829825}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &818104559416713184
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832973254260702128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 383163dfac2d7c34db65d79aad9dcec6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

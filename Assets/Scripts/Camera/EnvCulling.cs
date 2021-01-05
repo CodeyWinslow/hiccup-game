@@ -65,7 +65,7 @@ public class EnvCulling : MonoBehaviour
     {
         Cullable c = other.GetComponent<Cullable>();
         if (c)
-            c.Hide(hideMat);
+            c.Disappear();
     }
 
     private void OnTriggerExit(Collider other)

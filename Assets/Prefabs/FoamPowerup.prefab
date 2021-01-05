@@ -25,13 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637481746991640294}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.70710677}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.873, y: 14.873, z: 14.873}
-  m_Children: []
-  m_Father: {fileID: 5637481747131566076}
+  m_LocalScale: {x: 14.873001, y: 14.872999, z: 14.872999}
+  m_Children:
+  - {fileID: 5637481747862787912}
+  m_Father: {fileID: 142742184124700875}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5637481746991640293
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -91,6 +92,7 @@ GameObject:
   - component: {fileID: 5637481747131566077}
   - component: {fileID: 5637481747131566066}
   - component: {fileID: 7348118363785843303}
+  - component: {fileID: -3308506421374771512}
   m_Layer: 0
   m_Name: FoamPowerup
   m_TagString: Untagged
@@ -109,8 +111,7 @@ Transform:
   m_LocalPosition: {x: 0.452, y: 0.739, z: 4.65}
   m_LocalScale: {x: 1.8522, y: 1.8522, z: 1.8522}
   m_Children:
-  - {fileID: 5637481746991640295}
-  - {fileID: 5637481747862787912}
+  - {fileID: 142742184124700875}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,6 +154,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnTimer: 60
+--- !u!114 &-3308506421374771512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637481747131566079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbc05d16f86b854e9acba8142d1d3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  negOffset: {x: -0.2, y: 0, z: -0.2}
+  posOffset: {x: 0.2, y: 0, z: 0.2}
 --- !u!1 &5637481747862787915
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,12 +193,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637481747862787915}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.187, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0, z: 0.012573122}
+  m_LocalScale: {x: 0.82269895, y: 0.82269895, z: 0.82269895}
   m_Children: []
-  m_Father: {fileID: 5637481747131566076}
-  m_RootOrder: 1
+  m_Father: {fileID: 5637481746991640295}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5637481747862787918
 ParticleSystem:
@@ -4907,3 +4922,54 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &7411540135840896124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142742184124700875}
+  - component: {fileID: 7146775694011340033}
+  m_Layer: 0
+  m_Name: MeshCorrect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142742184124700875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411540135840896124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5637481746991640295}
+  m_Father: {fileID: 5637481747131566076}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7146775694011340033
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411540135840896124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 383163dfac2d7c34db65d79aad9dcec6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
