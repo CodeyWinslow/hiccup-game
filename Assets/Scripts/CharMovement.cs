@@ -14,6 +14,7 @@ public class CharMovement : Movement
     public float jumpSpeed;
 
     CharacterController cont;
+    GameInput input;
     GroundDetection grounded;
     Animator anim;
     CharCombat combatBehavior;
@@ -29,6 +30,8 @@ public class CharMovement : Movement
     {
         cont = GetComponent<CharacterController>();
         Asserts.AssertNotNull(cont, "Player must have CharacterController component");
+        input = GameInput.GetInstance();
+        Asserts.AssertNotNull(input, "Scene must have GameInput script");
         camFol = Camera.main.GetComponent<CameraFollow>();
         Asserts.AssertNotNull(camFol, "Main camera must have CameraFollow component");
         grounded = GetComponentInChildren<GroundDetection>();
@@ -49,15 +52,15 @@ public class CharMovement : Movement
     {
         //get raw movement input
         move = Vector3.zero;
-        move.z = Input.GetAxis("Vertical");
-        move.x = Input.GetAxis("Horizontal");
+        move.z = input.GetVerticalMovement();
+        move.x = input.GetHorizontalMovement();
 
         //animate movement
         anim.SetFloat("RunningForward", Vector3.Dot(velocity/moveSpeed, transform.forward));
         anim.SetFloat("Strafe", Vector3.Dot(velocity/moveSpeed, transform.right));
 
         //check if trying to jump
-        if (Input.GetButtonDown("Jump")) jumping = true;
+        //if (Input.GetButtonDown("Jump")) jumping = true;
     }
 
     private void FixedUpdate()

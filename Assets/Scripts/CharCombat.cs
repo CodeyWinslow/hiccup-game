@@ -23,6 +23,7 @@ public class CharCombat : MonoBehaviour
 
     private Attack[] attacks;
     private Animator anim;
+    GameInput input;
     private bool takingDamage;
     bool canAttack;
     int attackIndex;
@@ -58,6 +59,8 @@ public class CharCombat : MonoBehaviour
         attacks = GetComponents<Attack>();
         anim = GetComponentInChildren<Animator>();
         Asserts.AssertNotNull(anim, "Player must have Animator component");
+        input = GameInput.GetInstance();
+        Asserts.AssertNotNull(input, "Scene must have GameInput script");
 
         CanMove = true;
         CanAttack = true;
@@ -73,13 +76,13 @@ public class CharCombat : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(attackButton))
+        if (input.GetAttackButtonDown())
             currentAttack?.AttackPressed();
 
-        if (Input.GetButtonUp(attackButton))
+        if (input.GetAttackButtonUp())
             currentAttack?.AttackReleased();
 
-        if (Input.GetButtonDown(switchButton)
+        if (input.GetSwitchAttackButtonDown()
             && CanAttack)
             SwitchNextAttack();
     }

@@ -19,6 +19,7 @@ public class EnemyTargeting : MonoBehaviour
 
     LinkedList<Targetable> targets;
     int currentTarget = 0;
+    GameInput input;
 
     public bool HasTarget => TargetTransform != null;
 
@@ -30,6 +31,7 @@ public class EnemyTargeting : MonoBehaviour
 
     private void Awake()
     {
+        input = GameInput.GetInstance();
         Targeting = false;
         TargetTransform = null;
         currentTarget = 0;
@@ -37,19 +39,19 @@ public class EnemyTargeting : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetAxis("Target") > 0 && !Targeting)
+        if (input.GetTargetAxis() > 0 && !Targeting)
         {
             Targeting = true;
             ChangeTarget(currentTarget);
         }
 
-        if (Input.GetAxis("Target") <= 0 && Targeting)
+        if (input.GetTargetAxis() <= 0 && Targeting)
         {
             Targeting = false;
             ChangeTarget(currentTarget);
         }
 
-        if (Input.GetButtonDown("ChangeTarget") && Targeting)
+        if (input.GetSwitchTargetDown() && Targeting)
         {
             NextTarget();
         }
