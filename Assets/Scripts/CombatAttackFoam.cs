@@ -34,16 +34,12 @@ public class CombatAttackFoam : Attack, IContainsMeter
         effect = GetComponentInChildren<FoamEffect>();
         Asserts.AssertNotNull(effect, "Player must have FoamEffect component");
 
-        //AttackPressed += OnAttack;
-        //AttackReleased += OnRelease;
         foamMeter.OnValueZero += OnMeterZero;
         combat.Hurt += AttackReleased;
     }
 
     private void OnDestroy()
     {
-        //AttackPressed -= OnAttack;
-        //AttackReleased -= OnRelease;
         foamMeter.OnValueZero -= OnMeterZero;
         combat.Hurt -= AttackReleased;
     }
