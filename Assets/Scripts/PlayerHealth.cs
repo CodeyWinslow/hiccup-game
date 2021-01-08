@@ -12,6 +12,7 @@ public class PlayerHealth : Health
     [SerializeField]
     float healingHealthPerSec;
 
+    Animator anim;
     CharCombat combat;
     float nextHealTime;
     bool healing;
@@ -20,6 +21,7 @@ public class PlayerHealth : Health
     private void Awake()
     {
         combat = GetComponent<CharCombat>();
+        anim = GetComponentInChildren<Animator>();
         healing = false;
 
         this.OnDeath += Dead;
@@ -73,6 +75,6 @@ public class PlayerHealth : Health
 
     public void Dead()
     {
-        Debug.Log("You have died.");
+        anim.SetTrigger("Die");
     }
 }
