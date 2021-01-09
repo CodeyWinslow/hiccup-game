@@ -23,12 +23,16 @@ public class GameController : MonoBehaviour
         return instance;
     }
 
+    [SerializeField]
+    Canvas pauseScreen;
+
     SpawnController spawning;
     int round = 0;
     int knockouts = 0;
     int knockoutsThisRound = 0;
     int roundEnemies = 0;
     int nextRoundEnemies = 0;
+    bool paused = false;
 
     public event EventHandler<int> RoundChanged;
     public event EventHandler<int> KnockoutsChanged;
@@ -54,6 +58,38 @@ public class GameController : MonoBehaviour
         nextRoundEnemies = spawning.MaxEnemies;
         EnemiesLeftChanged?.Invoke(this, 0);
         KnockoutsChanged?.Invoke(this, 0);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            TogglePause();
+        }
+    }
+
+    public void Pause()
+    {
+        paused = true;
+        Time.timeScale = 0;
+        if (pauseScreen)
+            pauseScreen.gameObject.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+        if (pauseScreen)
+            pauseScreen.gameObject.SetActive(false);
+    }
+
+    public void TogglePause()
+    {
+        if (paused)
+            Unpause();
+        else
+            Pause();
     }
 
     public void EnemyHurtBeforeFirstRound(object sender, EventArgs e)
